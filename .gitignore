@@ -2,4 +2,4 @@
 *.log
 
 #Ignore node_modules
-Part1/node_modules/
+Part1/courseinfo/node_modules/
