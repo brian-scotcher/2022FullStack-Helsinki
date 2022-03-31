@@ -1,0 +1,5 @@
+#Ignore log files
+*.log
+
+#Ignore node_modules
+Part1/node_modules/
