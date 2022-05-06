@@ -4,7 +4,7 @@ const Title = ({titles}) => {
   return<h2>{titles}</h2>  
 }
 
-const DisplayFeedback = ({ good, neutral, bad, totalVotes, averageVotes, positivePercentage}) => {
+const Statistics = ({ good, neutral, bad, totalVotes, averageVotes, positivePercentage}) => {
   
   
   if (isNaN(averageVotes)){//Changes NaN to 0
@@ -67,7 +67,7 @@ const App = () => {
   //constants for stats
   const totalVotes= good+neutral+bad //toal number of votes
   const averageVotes = (good-bad)/totalVotes //average number of votes between +1 and -1
-  const positivePercentage = good/totalVotes*100
+  const positivePercentage = good/totalVotes*100 //Percentage of positive votes
 
 
   return (
@@ -78,7 +78,7 @@ const App = () => {
       <Button handleClick={() => setToBad(bad +1)} text="Bad" />
 
       <Title titles={titles.stats} />
-      <DisplayFeedback
+      <Statistics
       good={good}
       neutral={neutral}
       bad={bad}
