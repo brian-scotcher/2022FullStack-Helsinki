@@ -4,17 +4,22 @@ const Title = ({titles}) => {
   return<h2>{titles}</h2>  
 }
 
-const Statistics = ({ good, neutral, bad, totalVotes, averageVotes, positivePercentage}) => {
+const Statistics = ({ good, neutral, bad,}) => {
   
-  
-  if (isNaN(averageVotes)){//Changes NaN to 0
-    averageVotes=0
-  }
+  const noVotes= "No feedback given"
 
-  if (isNaN(positivePercentage)){//Changes NaN to 0
-    positivePercentage=0
-  }
-  
+  //constants for stats
+  const totalVotes= good+neutral+bad //toal number of votes
+  const averageVotes = (good-bad)/totalVotes //average number of votes between +1 and -1
+  const positivePercentage = good/totalVotes*100 //Percentage of positive votes
+
+  if(totalVotes===0){
+    return(
+    <div>
+      {noVotes}
+    </div>
+    )
+  }else{
   return (
     <div>
     Good: {good} <br/>
@@ -23,9 +28,9 @@ const Statistics = ({ good, neutral, bad, totalVotes, averageVotes, positivePerc
     All: {totalVotes}<br/>
     Average: {averageVotes}<br/>
     Possitive: {positivePercentage}%
-
     </div>
   )
+  }
 }
 
 const Button = (props) => (
@@ -64,10 +69,7 @@ const App = () => {
     setBad(newValue)
   }
 
-  //constants for stats
-  const totalVotes= good+neutral+bad //toal number of votes
-  const averageVotes = (good-bad)/totalVotes //average number of votes between +1 and -1
-  const positivePercentage = good/totalVotes*100 //Percentage of positive votes
+  
 
 
   return (
@@ -82,9 +84,6 @@ const App = () => {
       good={good}
       neutral={neutral}
       bad={bad}
-      totalVotes={totalVotes}
-      averageVotes={averageVotes}
-      positivePercentage={positivePercentage}
       />
 
     </div>
