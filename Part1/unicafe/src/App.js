@@ -7,9 +7,10 @@ const Title = ({ titles }) => {
 //Component for each individual statistic
 const StatisticLine = ({ text, value }) => {
   return (
-    <div>
-      {text} {value}
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
@@ -25,14 +26,16 @@ const Statistics = ({ good, neutral, bad }) => {
     return <div>{noVotes}</div>;
   } else {
     return (
-      <div>
-        <StatisticLine text="Good: " value={good} />
-        <StatisticLine text="Neutral: " value={neutral} />
-        <StatisticLine text="Bad: " value={bad} />
-        <StatisticLine text="Total: " value={totalVotes} />
-        <StatisticLine text="Average: " value={averageVotes} />
-        <StatisticLine text="Positive: " value={positivePercentage} />
-      </div>
+      <table>
+        <tbody>
+          <StatisticLine text="Good: " value={good} />
+          <StatisticLine text="Neutral: " value={neutral} />
+          <StatisticLine text="Bad: " value={bad} />
+          <StatisticLine text="Total: " value={totalVotes} />
+          <StatisticLine text="Average: " value={averageVotes} />
+          <StatisticLine text="Positive: " value={positivePercentage} />
+        </tbody>
+      </table>
     );
   }
 };
