@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+const Headings = ({ headings }) => {
+  return <h2>{headings}</h2>;
+};
+
 //Button Component
 const Button = (props) => <button onClick={props.onClick}>{props.text}</button>;
 
@@ -35,16 +39,22 @@ const App = () => {
   //Click Handlers
   const anecdoteClick = () => setSelected([randomNumber]);
   const voteClick = () => {
-    //create copy of votes array to add a new vote
-    const newVote = [...votes];
-    //Adds the new vote to the selected anecdote
-    newVote[selected] += 1;
-    //Uses the newVote array with the newly added vote and replaces the votes so newVotes is now votes
-    setVotes(newVote);
+    const newVote = [...votes]; //create copy of votes array to add a new vote
+    newVote[selected] += 1; //Adds the new vote to the selected anecdote
+    setVotes(newVote); //Uses the newVote array with the newly added vote and replaces the votes so newVotes is now votes
+  };
+
+  const mostVotes = Math.max(...votes);
+  const mostVoted = anecdotes[votes.indexOf(mostVotes)];
+
+  const titles = {
+    dailyAnecdote: "Anecdote of the day",
+    winningAnecdote: " Anecdote with the most votes",
   };
 
   return (
     <div>
+      <Headings headings={titles.dailyAnecdote} />
       <AnecdoteDisplayed
         text={anecdotes[selected]}
         votesDisplayed={votes[selected]}
@@ -52,6 +62,8 @@ const App = () => {
 
       <Button onClick={voteClick} text="Vote" />
       <Button onClick={anecdoteClick} text="Next Anecdote" />
+      <Headings headings={titles.winningAnecdote} />
+      <AnecdoteDisplayed text={mostVoted} votesDisplayed={mostVotes} />
     </div>
   );
 };
